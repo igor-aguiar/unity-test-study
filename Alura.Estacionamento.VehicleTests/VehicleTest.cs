@@ -31,5 +31,11 @@ namespace Alura.Estacionamento.VehicleTests
             var vehicle = new Veiculo();
             Assert.Equal(TipoVeiculo.Automovel, vehicle.Tipo);
         }
+
+        [Fact(Skip = "Method not implemented yet")]
+        public void ValidateVehicleOwner()
+        {
+            var vehicle = new Veiculo();
+        }
     }
 }
