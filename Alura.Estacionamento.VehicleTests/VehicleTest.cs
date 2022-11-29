@@ -63,6 +63,17 @@ namespace Alura.Estacionamento.VehicleTests
             Assert.Contains("Tipo do Veículo: Automovel", data);
         }
 
+        [Fact]
+        public void TestPlateException()
+        {
+            string plate = "asd+9999";
+
+            var message = Assert.Throws<FormatException>(
+                () => new Veiculo().Placa = plate);
+
+            Assert.Equal("O 4° caractere deve ser um hífen", message.Message);
+        }
+
         public void Dispose()
         {
             OutputHelper.WriteLine("Garbage collector has passed here");
