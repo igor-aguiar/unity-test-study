@@ -83,9 +83,13 @@ namespace Alura.Estacionamento.Modelos
             return informacao;
         }
 
-        
+        public Veiculo CheckVehicleIsParked(string placa)
+        {
+            var encontrado = (from veiculo in veiculos 
+                              where veiculo.Placa == placa 
+                              select veiculo).SingleOrDefault();
 
-       
-    
+            return encontrado;
+        }
     }
 }

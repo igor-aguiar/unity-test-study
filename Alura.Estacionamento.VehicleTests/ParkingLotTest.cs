@@ -1,6 +1,7 @@
 ﻿using Alura.Estacionamento.Alura.Estacionamento.Modelos;
 using Alura.Estacionamento.Modelos;
 using System;
+using System.ComponentModel;
 using Xunit;
 
 namespace Alura.Estacionamento.Tests
@@ -51,6 +52,25 @@ namespace Alura.Estacionamento.Tests
                 Assert.Equal(2, totalIncoming);
             }
             
+        }
+
+        [Theory(DisplayName="Check if vehicle is Parked")]
+        [InlineData("Igor Aguiar", "abc-1234", "verde", TipoVeiculo.Motocicleta)]
+        public void CheckIfVehicleInParkingLot(string name, string plate, string color, TipoVeiculo tipoVeiculo)
+        {
+            var vehicle = new Veiculo();
+            vehicle.Placa = plate;
+            vehicle.Proprietario = name;
+            vehicle.Cor = color;
+            vehicle.Tipo = tipoVeiculo;
+
+            var parkingLot = new Patio();
+
+            parkingLot.RegistrarEntradaVeiculo(vehicle);
+
+            var parkedVehicle = parkingLot.CheckVehicleIsParked(vehicle.Placa);
+
+            Assert.Equal(vehicle, parkedVehicle);
         }
     }
 }
